@@ -122,9 +122,9 @@ let Chaincode = class {
       counterValue = parseInt(carAsBytes.toString());
     }
     if (!counterValue) {
-      counterValue = 0;
+      counterValue = 1;
     } else {
-      counterValue = counterValue - 1;
+      counterValue = counterValue + 1;
     }
     stub.setEvent("putstate", Buffer.from(String(counterValue)));
     await stub.putState(args[0], Buffer.from(String(counterValue)));
