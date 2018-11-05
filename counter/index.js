@@ -88,6 +88,23 @@ let Chaincode = class {
     console.log(carAsBytes.toString());
     return carAsBytes;
   }
+  
+  async getAllCars(stub, args) {
+    if (args.length != 2) {
+      throw new Error(
+        "Incorrect number of arguments. Expecting CarNumber ex: CAR01"
+      );
+    }
+    let startKey = args[0];
+    let endKey = args[1];
+
+    let carAsBytes = await stub.getStateByRange(startKey,endKey); //get the car from chaincode state
+    if (!carAsBytes || carAsBytes.toString().length <= 0) {
+      throw new Error(carNumber + " does not exist: ");
+    }
+    console.log(carAsBytes.toString());
+    return carAsBytes;
+  }
 
   async decrement(stub, args) {
     console.info("============= START : Create Car ===========");
