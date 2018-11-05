@@ -129,7 +129,7 @@ let Chaincode = class {
 
   async increment(stub, args) {
     console.info("============= START : Create Car ===========");
-    if (args.length != 1 || args.length != 2) {
+    if (args.length !== 1 || args.length !== 2) {
       throw new Error("Incorrect number of arguments. Expecting 1 or 2");
     }
     let counterValue = 0
