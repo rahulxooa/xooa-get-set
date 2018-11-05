@@ -129,14 +129,17 @@ let Chaincode = class {
 
   async increment(stub, args) {
     console.info("============= START : Create Car ===========");
-    if (args.length != 1) {
-      throw new Error("Incorrect number of arguments. Expecting 5");
+    if (args.length != 1 || args.length != 2) {
+      throw new Error("Incorrect number of arguments. Expecting 1 or 2");
     }
-
-    let counterValue = 0;
+    let counterValue = 0
+    if(args.length == 2){
+      counterValue = args[1];
+     }
     let carAsBytes = await stub.getState(args[0]); //get the car from chaincode state
+   
     if (carAsBytes) {
-      counterValue = parseInt(carAsBytes.toString());
+      counterValue += parseInt(carAsBytes.toString());
     }
     if (!counterValue) {
       counterValue = 1;
