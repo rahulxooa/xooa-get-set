@@ -90,13 +90,15 @@ let Chaincode = class {
   }
   
   async getAllCars(stub, args,thisClass) {
-    if (args.length != 2) {
-      throw new Error(
-        "Incorrect number of arguments. Expecting CarNumber ex: CAR01"
-      );
-    }
+    let startKey;
+    let endKey;
+    if(args.length == 1){
     let startKey = args[0];
+        } else {
+              let startKey = args[0];
     let endKey = args[1];
+          
+        }
 
     let iterator = await stub.getStateByRange(startKey,endKey); //get the car from chaincode state
 
