@@ -98,7 +98,9 @@ let Chaincode = class {
     let startKey = args[0];
     let endKey = args[1];
 
-    let carAsBytes = await stub.getStateByRange(startKey,endKey); //get the car from chaincode state
+    let iterator = await stub.getStateByRange(startKey,endKey); //get the car from chaincode state
+    console.log(iterator)
+    
     if (!carAsBytes || carAsBytes.toString().length <= 0) {
       throw new Error(carNumber + " does not exist: ");
     }
