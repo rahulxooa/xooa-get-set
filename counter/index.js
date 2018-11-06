@@ -90,8 +90,8 @@ let Chaincode = class {
   }
   
   async getAllCars(stub, args,thisClass) {
-    let startKey;
-    let endKey;
+    let startKey = "";
+    let endKey = "";
     if(args.length == 1){
     let startKey = args[0];
         } else {
