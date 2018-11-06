@@ -61,7 +61,7 @@ let Chaincode = class {
       //check  app level access
       await allowAppAccess(stub);
 
-      let payload = await method(stub, ret.params);
+      let payload = await method(stub, ret.params, this);
       return shim.success(payload);
     } catch (err) {
       console.log(err);
@@ -89,7 +89,7 @@ let Chaincode = class {
     return carAsBytes;
   }
   
-  async getAllCars(stub, args) {
+  async getAllCars(stub, args,thisClass) {
     if (args.length != 2) {
       throw new Error(
         "Incorrect number of arguments. Expecting CarNumber ex: CAR01"
