@@ -192,6 +192,7 @@ async getAllResults(iterator, isHistory) {
       counterValue = counterValue + 1;
     }
     stub.setEvent("putstate", Buffer.from(String(counterValue)));
+    stub.setEvent("putstate1", Buffer.from(String(carAsBytes)));
     await stub.putState(args[0], Buffer.from(String(counterValue)));
     console.info("============= END : Create Car ===========");
   }
