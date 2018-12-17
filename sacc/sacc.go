@@ -78,7 +78,7 @@
 	 }
  
 	 err := stub.PutState(args[0], []byte(args[1]))
-	  err = stub.SetEvent("putstate", []byte(args[1]))
+	 stub.SetEvent("putstate", []byte(args[1]))
 	 if err != nil {
 		 return "", fmt.Errorf("Failed to set asset: %s", args[0])
 	 }
